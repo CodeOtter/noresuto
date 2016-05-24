@@ -1,0 +1,48 @@
+{
+  "name": "redweb",
+  "version": "1.0.0",
+  "description": "Node-Red Web Platform",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "NODE_ENV=test node test",
+    "start": "NODE_ENV=production node_modules/.bin/pm2 start src",
+    "stop": "NODE_ENV=production node_modules/.bin/pm2 stop src",
+    "dev": "NODE_ENV=development node_modules/.bin/pm2 stop all;node_modules/.bin/pm2 start src",
+    "info": "node_modules/.bin/pm2 info src",
+    "logs": "node_modules/.bin/pm2 logs src --timestamp --lines 0",
+    "search": "node_modules/.bin/node-red-admin search",
+    "enable": "node_modules/.bin/node-red-admin enable",
+    "disable": "node_modules/.bin/node-red-admin disable",
+    "flush": "./node_modules/.bin/pm2 flush",
+    "restart": "./node_modules/.bin/pm2 restart all",
+    "get": "node_modules/.bin/node-red-admin install",
+    "remove": "node_modules/.bin/node-red-admin remove",
+    "stats": "./node_modules/.bin/pm2 monit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeOtter/redweb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeOtter/redweb/issues"
+  },
+  "homepage": "https://github.com/CodeOtter/redweb",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "colors": "^1.1.2",
+    "lodash": "^4.13.1",
+    "node-red": "^0.13.4",
+    "node-red-admin": "^0.1.2",
+    "pm2": "^1.1.3",
+    "express": "^4.13.4",
+    "sequelize": "^3.23.2"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "sqlite3": "^3.1.4",
+    "superagent": "^2.0.0-alpha.3",
+    "supertest": "^1.2.0"
+  }
+}

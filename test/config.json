@@ -1,0 +1,11 @@
+{
+    "spec_dir": "test",
+    "spec_files": [
+        "services/*[tT]est.js",
+        "nodes/*[tT]est.js",
+        "utils/*[tT]est.js"
+    ],
+    "helpers": [
+        "helpers/**/*.js"
+    ]
+}

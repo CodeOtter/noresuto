@@ -1,0 +1,15 @@
+<script>
+module.exports = function(RED) {
+  RED.nodes.registerType('{{name}}', function {{name}}(config) {
+    RED.nodes.createNode(this, config);
+    var node = this;
+    this.on('input', function(msg) {
+      // Complete stub
+      node.send(msg);
+    });
+    this.on('close', function() {
+      // Close stub
+    });
+  });
+};
+</script>

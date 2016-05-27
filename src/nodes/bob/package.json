@@ -1,0 +1,12 @@
+{
+    "name"         : "redweb-contrib-",
+    "version"      : "0.0.1",
+    "description"  : "",
+    "dependencies": {},
+    "keywords": [ "node-red" ],
+    "node-red"     : {
+        "nodes": {
+            "sample": "sample/sample.js"
+        }
+    }
+}

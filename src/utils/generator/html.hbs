@@ -1,0 +1,24 @@
+<script type="text/javascript">
+    RED.nodes.registerType('{{name}}',{
+        category: '{{category}}',
+        color: '{{color}}',
+        defaults: {{defaults}},
+        inputs:{{inputs}},
+        outputs:{{outputs}},
+        icon: '{{icon}}.png',
+        label: function() {
+            return this.name || '{{name}}';
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="lower-case">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="{{name}}">
+    <p>{{description}}</p>
+</script>

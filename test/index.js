@@ -6,7 +6,7 @@ var express = require('express');
 var http = require('http');
 var Supertest = require('supertest');
 var Jasmine = require('jasmine');
-var settings = require('../settings');
+var settings = require('../src/config');
 
 /**
  * Refreshes the supertest cache so that each tester can have their own supertest instance
@@ -75,15 +75,15 @@ jasmine.onComplete(function(passed) {
   process.exit(passed ? 0 : 1);
 });
 
-RED.init(server, settings);
+RED.init(server, settings.nodeRed);
 
 // Serve the editor UI from /red
-app.use(settings.httpAdminRoot, RED.httpAdmin);
+app.use(settings.nodeRed.httpAdminRoot, RED.httpAdmin);
 
 // Serve the http nodes UI from /api
-app.use(settings.httpNodeRoot, RED.httpNode);
+app.use(settings.nodeRed.httpNodeRoot, RED.httpNode);
 
-server.listen(settings.testPort);
+server.listen(settings.nodeRed.testPort);
 
 // Start the runtime
 RED.start();

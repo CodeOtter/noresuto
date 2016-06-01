@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test node test",
     "start": "NODE_ENV=production node_modules/.bin/pm2 start src",
     "stop": "NODE_ENV=production node_modules/.bin/pm2 stop src",
-    "dev": "NODE_ENV=development node_modules/.bin/pm2 stop all;node_modules/.bin/pm2 start src;node_modules/.bin/pm2 logs src --timestamp --lines 0",
+    "dev": "NODE_ENV=development node_modules/.bin/pm2 stop all;node_modules/.bin/pm2 start src;node_modules/.bin/pm2 logs src --watch --timestamp --lines 0",
     "info": "node_modules/.bin/pm2 info src",
     "logs": "node_modules/.bin/pm2 logs src --timestamp --lines 0",
     "search": "node_modules/.bin/node-red-admin search",

@@ -4,6 +4,8 @@ module.exports = function(RED) {
     var node = this;
     this.on('input', function(msg) {
       // Complete stub
+      console.log(msg);
+      console.log(config);
       node.send(msg);
     });
     this.on('close', function() {

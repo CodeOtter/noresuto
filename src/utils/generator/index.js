@@ -25,7 +25,7 @@ module.exports = function(name, description, category, color, defaults, inputs, 
     defaults: JSON.stringify(defaults || {}, null, 2),
     inputs: inputs || 1,
     outputs: outputs || 1,
-    icon: icon
+    icon: icon + 'function'
   };
 
   var jsOutput = handlebars.compile(jsFile)(values);

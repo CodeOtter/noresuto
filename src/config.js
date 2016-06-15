@@ -204,7 +204,7 @@ module.exports = {
       },
 
       sqlite: {
-        name: "database",
+        name: "localSqlite",
         username: "username",
         password: "password",
         host: "localhost",

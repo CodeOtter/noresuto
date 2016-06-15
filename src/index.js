@@ -84,8 +84,8 @@ if(program.newNode) {
   global._ = require('lodash');
   global.async = require('async');
 
-  loadAxioms('models');
   loadAxioms('services');
+  loadAxioms('models');
   loadAxioms('utils');
 
   // Activate assocations and routes

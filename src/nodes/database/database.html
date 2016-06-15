@@ -1,0 +1,115 @@
+<script type="text/javascript">
+    var databaseElementName = '#node-input-databaseName';
+    var modelElementName = '#node-input-modelName';
+    var fieldElementName = '#node-input-field';
+    var fieldTypeElementName = '#node-input-fieldType';
+
+    /**
+     * Populates the database dropdown with database options
+     * @param   Object      Object with database names as keys and an array of table names as the value
+     * @param   String      The current database being used
+     */
+    function populateDatabases(databases, current) {
+        var element = $(databaseElementName);
+        element.empty();
+        for(var name in databases) {
+            if(name === current) {
+                element.append('<option value="' + name + '" selected>' + name + '</option>');
+            } else {
+                element.append('<option value="' + name + '">' + name + '</option>');
+            }
+        } 
+    }
+
+    /**
+     * Populates the model dropdown with model options
+     * @param   Object      Object with database names as keys and an array of table names as the value
+     * @param   String      The current model being used
+     */
+    function populateModels(databases, current) {
+        var element = $(modelElementName);
+        var database = databases[$(databaseElementName + ' option:selected').text()];
+        element.empty();
+        for(var index in database) {
+            if(database[index] === current) {
+                element.append('<option value="' + database[index] + '" selected>' + database[index] + '</option>');
+            } else {
+                element.append('<option value="' + database[index] + '">' + database[index] + '</option>');
+            }
+        } 
+    }
+
+    RED.nodes.registerType('database',{
+        category: 'storage',
+        color: 'tan',
+        defaults: {
+            databaseName: { value: '' },
+            modelName: { value: '' },
+            query: { value: '' },
+            fieldType: {value: 'msg'},
+            field: { value: 'payload' }
+        },
+        inputs: 1,
+        outputs: 2,
+        icon: 'db.png',
+
+        label: function() {
+            return 'Persist to ' + (this.modelName || 'unspecified');
+        },
+
+        oneditprepare: function() {
+            var self = this;
+
+            if (!this.fieldType) {
+                this.fieldType = 'msg';
+            }
+
+            $(fieldElementName).typedInput({
+                'default': 'msg',
+                types: ['msg','flow','global'],
+                typeField: $(fieldTypeElementName)
+            });
+
+            var databaseElement = $(databaseElementName);
+            var modelElement = $(modelElementName);
+
+            databaseElement.prop('disabled', true);
+            modelElement.prop('disabled', true);
+
+            $.getJSON('databases', function(databases) {
+                populateDatabases(databases, self.databaseName);
+                populateModels(databases, self.modelName);
+                databaseElement.prop('disabled', false);
+                modelElement.prop('disabled', false);
+            });
+
+            $(databaseElementName).unbind('change').change(function () {
+                $.getJSON('databases', populateModels);
+            });
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="database">
+    <div class="form-row">
+        <label for="node-input-databaseName"><i class="icon-tag"></i>Database Name</label>
+        <select id="node-input-databaseName" placeholder="Enter database name"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-modelName"><i class="icon-tag"></i>Model Name</label>
+        <select id="node-input-modelName" placeholder="Enter model name"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-query"><i class="icon-tag"></i>Query</label>
+        <input type="text" id="node-input-query" placeholder="Enter JSON query if updating">
+    </div>
+    <div class="form-row">
+        <label for="node-input-field"><i class="fa fa-edit"></i> <span data-i18n="template.label.property"></span></label>
+        <input type="text" id="node-input-field" placeholder="payload" style="width:250px;">
+        <input type="hidden" id="node-input-fieldType">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="database">
+    <p>Persist data to a database.  The top output is for success.  The bottom output is for failure.</p>
+</script>

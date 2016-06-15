@@ -17,7 +17,8 @@
     "restart": "./node_modules/.bin/pm2 restart all",
     "get": "node_modules/.bin/node-red-admin install",
     "remove": "node_modules/.bin/node-red-admin remove",
-    "stats": "./node_modules/.bin/pm2 monit"
+    "stats": "./node_modules/.bin/pm2 monit",
+    "generate": "node src --newNode"
   },
   "repository": {
     "type": "git",
